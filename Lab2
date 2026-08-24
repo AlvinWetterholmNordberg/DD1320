@@ -2,7 +2,6 @@ from array import array
 
 a = array("i") # i = int datatyp, skapar array.
 
-
 class ArrayQ:
     def __init__(self, item):
         self.__queue = array("i") #   __  för att göra privat. skapar tom array för kön.
@@ -13,6 +12,16 @@ class ArrayQ:
     def dequeue(self):
         return self.__queue.pop(0) # poppar item nr 1, dvs tar ut och returnerar.
 
+    def isEmpty(self):
+        if len(self.__queue) == 0:
+            return True
+        else:
+            return False
+
+    def __str__(self):
+        vanlig_lista = list(self.__queue)
+        return str(vanlig_lista)
+
 q = ArrayQ(a)
 q.enqueue(1)
 q.enqueue(2)
@@ -22,5 +31,19 @@ if (x == 1 and y == 2):
     print("OK")
 else:
     print("FAILED")
+
+kortlista = input("Mata in kortens ordning, mellanslag mellan varje: ").split()
+for kort in kortlista:
+    q.enqueue(int(kort))
+
+
+print(q)
+
+
+
+
+#kollar ifall array är tom.
+#tom = q.isEmpty()
+#print(tom)
 
 
