@@ -2,11 +2,11 @@ import csv
 
 
 def read_file(filename):
-    with open(filename, "r") as file:
+    with open(filename, "r", encoding="utf-8") as file:
         csvfile = csv.reader(file, delimiter=",")
         next(csvfile)  # Hoppa över header-raden
         for line in csvfile:
-            print(line)  # Här kan du göra något med raden, t.ex. skapa ett Seed-objekt
+            print(line)
 
 
 # Klassen drama representerar en rad i kdrama-filen.
@@ -62,9 +62,9 @@ def read_rows_from_file(filename):
     dramas = []
     with open(filename, "r") as file:
         csvfile = csv.reader(file, delimiter=",")
-        next(csvfile)  # Hoppa över header-raden
+        next(csvfile)  # vi vill hoppa över header-raden
         for line in csvfile:
-            if len(line) == 10:  # Kontrollera att raden har exakt 10 kolumner
+            if len(line) == 10:  # vi vill ontrollera att raden har exakt 10 kolumner
                 drama_obj = Drama(line)
                 dramas.append(drama_obj)
     return dramas
@@ -140,5 +140,19 @@ def search_highest_rated_drama(file):
     print(f"The best rated drama in the csv file is: {best_rated_drama}")
 
 
-search_highest_rated_drama("Lab1/kdrama.csv")
+def search_drama_by_title(file, input_title):
+    list_of_dramas = read_rows_from_file(file)
+    output_list = []
+    for drama in list_of_dramas:
+        if input_title.lower() in drama.title.lower():
+            output_list.append(drama.__str__())
+    if not output_list:
+        print("inget drama matchar din sökning")
+    else:
+        print(output_list)
+
+
+# search_highest_rated_drama("Lab1/kdrama.csv")
 program_task_3()
+# input_title = input("Vilken film vill du se?:")
+# search_drama_by_title("Lab1/kdrama.csv", input_title)
