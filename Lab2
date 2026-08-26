@@ -10,7 +10,7 @@ class ArrayQ:
         self.__queue.append(item) # lägger till en item längst bak i kö
 
     def dequeue(self):
-            self.__queue.pop(1) # poppar item nr 1, dvs tar ut och returnerar.
+        return self.__queue.pop(0) # poppar item nr 1, dvs tar ut och returnerar.
 
 
     def isEmpty(self):
@@ -24,38 +24,30 @@ class ArrayQ:
         return str(vanlig_lista)
 
 q = ArrayQ(a)
-print(q)
+print(q)                                     
 
 kortlista = input("Mata in kortens ordning, mellanslag mellan varje: ").split()
 for kort in kortlista:
     q.enqueue(int(kort))
-print(q)
 
-q.dequeue()
-q.enqueue(kortlista[0])
+#while not q.isEmpty():
 
-    #if len(q) == 13:
-        #False
+sorterade_kort = []
+while not q.isEmpty():
+    flyttade_korten = q.dequeue() # poppar värdet av index 0 och flyttar bak.
+    q.enqueue(flyttade_korten)
 
+    if not q.isEmpty():
+        print(q)
+        bordkort = q.dequeue() # tar nu ut första kortet, och sparar i lista på bordet
+        sorterade_kort.append(bordkort)
+        print (f"{flyttade_korten} flyttas bak, {bordkort} läggs på bordet")
 
-
-
-
-
-
-
-
-
+print(sorterade_kort)
 
 
+# 7 1 12 2 8 3 11 4 9 5 13 6 10 ordningen
 
-
-
-
-
-#kollar ifall array är tom.
-#tom = q.isEmpty()
-#print(tom)
 
 
 
