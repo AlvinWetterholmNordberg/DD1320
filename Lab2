@@ -10,7 +10,8 @@ class ArrayQ:
         self.__queue.append(item) # lägger till en item längst bak i kö
 
     def dequeue(self):
-        return self.__queue.pop(0) # poppar item nr 1, dvs tar ut och returnerar.
+            self.__queue.pop(1) # poppar item nr 1, dvs tar ut och returnerar.
+
 
     def isEmpty(self):
         if len(self.__queue) == 0:
@@ -23,21 +24,31 @@ class ArrayQ:
         return str(vanlig_lista)
 
 q = ArrayQ(a)
-q.enqueue(1)
-q.enqueue(2)
-x = q.dequeue()
-y = q.dequeue()
-if (x == 1 and y == 2):
-    print("OK")
-else:
-    print("FAILED")
+print(q)
 
 kortlista = input("Mata in kortens ordning, mellanslag mellan varje: ").split()
 for kort in kortlista:
     q.enqueue(int(kort))
-
-
 print(q)
+
+q.dequeue()
+q.enqueue(kortlista[0])
+
+    #if len(q) == 13:
+        #False
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -45,5 +56,7 @@ print(q)
 #kollar ifall array är tom.
 #tom = q.isEmpty()
 #print(tom)
+
+
 
 
