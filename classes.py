@@ -13,6 +13,7 @@ class ArrayQ:
             print("[]")
         else:
             items = []
+            # loopa igenom alla element i listan och lägga till dessa i listan items.
             for i in range(self.__size):
                 items.append(self.__queue[self.__front + i])
             return str(items)
@@ -52,7 +53,6 @@ class ArrayQ:
 
 # För LinkedQ, en kö av noder (länkad lista)
 
-
 """
 Själva LinkedQ-klassen ska ha två privata attribut: first som håller reda på den första noden i kön och last som pekar ut den sista. 
 Använd samma gränssnitt som i uppgift 1, med enqueue, dequeue osv.
@@ -88,7 +88,9 @@ class LinkedQ:
         return self.__first == None
 
     def enqueue(self, item):
+        # Skapar en ny nod med värdet på variabeln 'item'
         newNode = Node(item)
+
         if self.isEmpty():
             self.__first = newNode
             self.__last = newNode
@@ -103,10 +105,17 @@ class LinkedQ:
         if self.isEmpty():
             raise Exception("Kön är tom. Det finns inget kö-objekt att ta bort.")
         else:
+            # Lagrar den första noden i en variabel 'firstObj'
             firstObj = self.__first
+
+            # Flyttar pekaren 'first' till andra noden i listan.
             self.__first = self.__first.next
+
             if self.isEmpty():
+                # Vill vill att pekaren 'last' inte fortfarande pekar på noden. När 'last' & 'first' pekar på None är listan per definition tom.
                 self.__last = None
+
+                # Returnerar datan i noden vi tagit ut.
             return firstObj.data
 
 
