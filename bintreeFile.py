@@ -11,14 +11,14 @@ class binTree:
         self.root = None
         self.size = 0
 
+    def __contains__(self, value):
+        # True om value finns i trädet, False annars
+        return finns(self.root, value)
+
     def put(self, newvalue):
         # När trädobjektets put("gurka") anropas skickar trädet sin rotpekare och det nya ordet till funktionen putta som ser till att en ny nod skapas på rätt ställe.
         # Sorterar in newvalue i trädet
         self.root = putta(self.root, newvalue)
-
-    def __contains__(self, value):
-        # True om value finns i trädet, False annars
-        return finns(self.root, value)
 
     def write(self):
         # Skriver ut trädet i inorder
