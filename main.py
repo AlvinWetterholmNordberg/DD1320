@@ -1,4 +1,5 @@
-from bintreeFile import binTree
+from bintreeFile import binTree, skriv
+from qClasses import LinkedQ
 import re
 
 
@@ -14,6 +15,7 @@ def makeTree():
 def searches(tree):
     findme = input().strip()
     while findme != "#":
+
         if findme in tree:
             print(findme, "found")
         else:
@@ -33,11 +35,9 @@ def uppg2():
     print("\n")
 
 
-def getWords(file_path):
-    with open(file_path, "r") as file:
-        for line in file:
-            for word in line.split():
-                yield word
+""""Tredje uppgiften är att kolla orden i en engelsk text mot det svenska sökträdet. 
+Finns det några skenbart svenska ord ska dom skrivas ut, men bara den första förekomsten av varje svenskt ord. 
+(För att veta vilka ord man redan hittat sparar man förstås dom i ett sökträd.)"""
 
 
 def uppg3():
@@ -56,8 +56,7 @@ def uppg3():
 
     # ord-splitter som rensar bort irriterande skiljetecken (som punkter, kommatecken och citattecken) från engelska.txt och ger dig en ren lista med ord redo för att sökas i trädet.
     words = re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?", text)
-    for word in words:
-        print(word)
+
     # 3. Gå igenom orden, kontrollera dubbletter och svenska ord
     for word in words:
         ordet = word.lower()
@@ -70,4 +69,26 @@ def uppg3():
     print("\n")
 
 
-uppg3()
+def testbinTreeClass():
+    run = True
+    while run:
+        print("\n\nVälj ett alternativ: ")
+        print("1. Lägg till ord i trädet")
+        print("2. Sök efter ord i trädet")
+        print("3. Skriv ut trädet")
+        print("4. Avsluta")
+        choice = input("Ditt val: ")
+        if choice == "1":
+            print("Lägg till ord i trädet (avsluta med #): ")
+            svenska = makeTree()
+        elif choice == "2":
+            print("Sök efter ord i trädet (avsluta med #): ")
+            searches(svenska)
+        elif choice == "3":
+            print("Skriv ut trädet: ")
+            skriv(svenska.root)
+        elif choice == "4":
+            run = False
+
+
+testbinTreeClass()

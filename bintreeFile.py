@@ -43,7 +43,7 @@ def putta(p, newvalue):
     if newvalue > p.value:
         p.right = putta(p.right, newvalue)
 
-    return p
+    return p  # vi behlver returnera p eftersom vi vill behålla referensen till noden som vi just skapade eller uppdaterade. Detta är viktigt för att korrekt bygga upp trädet och säkerställa att alla noder är länkade på rätt sätt.
 
 
 def finns(p, key):
@@ -57,7 +57,7 @@ def finns(p, key):
     if key == p.value:
         return True
 
-    # Scenario (most common): Om key inte överräns stämmer med p.value.
+    #  Om key inte överräns stämmer med p.value.
 
     # Om key är mindre än nodens value
     if key < p.value:
@@ -80,9 +80,11 @@ if __name__ == "__main__":
     print("Testkod: ")
     # kör testkod direkt i denna modul här
     svenska = binTree()  # Skapa ett trädobjekt
+
     svenska.put("gurka")  # Sortera in "gurka" i trädet
     svenska.put("hallongrotta")
-    svenska.put("kuk")
+    svenska.put("kaka")
+    svenska.put("örhänge")
 
     if "gurka" in svenska:  # Kolla om "gurka" finns i trädet
         # (Operatorn in anropar metoden __contains__ som du ska implementera i din Bintree-klass)
