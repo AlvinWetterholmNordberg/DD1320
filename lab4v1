@@ -1,0 +1,41 @@
+from bintreeFile import binTree
+
+bokstäver = 'abcdefghijklmnopqrstuvwyzåäö' #ger python alfabetet, så nya ord kan genereras
+
+def main():
+
+    svenska = binTree() #två binära träd, dels för svenska samt för ord som redan hittats
+    gamla = binTree()
+
+    with open('word3.txt', 'r', encoding="utf-8") as ord: # läs in word3 filen in i svenska trädet
+        for rad in ord:
+             ordet = rad.strip()
+             if ordet:
+                    svenska.put(ordet)
+
+
+    #inputs för start och slut ord
+    startord = input('Välj startord').strip()
+    slutord = input('Välj slutord').strip()
+
+    gamla.put(startord)
+    makechildren(startord, svenska, gamla)
+
+
+def makechildren(startord, svenska, gamla):
+
+    for i in range(len(startord)): # gå igenom varje bokstavsposition
+
+        for bokstav in bokstäver: #för varje bokstav i alfabetet i position "i"
+
+            nytt_ord = startord[:i] + bokstav + startord[i+1:] #string slicing, ta successivt bort en bokstav i ordets ordning och byt ut med alfabetet
+
+            if nytt_ord != startord: #sålänge ordet inte är startordet, finns i svenska och inte än hittats, printa. sätt i ordet i gamla trädet
+
+                if (nytt_ord in svenska) and (nytt_ord not in gamla):
+
+                    print(nytt_ord)
+                    gamla.put(nytt_ord)
+
+if __name__ == "__main__":
+    main()
